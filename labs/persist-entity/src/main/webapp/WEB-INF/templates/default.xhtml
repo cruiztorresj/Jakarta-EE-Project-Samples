@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:h="jakarta.faces.html" xmlns:ui="jakarta.faces.facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <h:outputStylesheet name="css/screen.css" />
+        <title>
+            <ui:insert name="title">
+                [Title will be inserted here]
+            </ui:insert>
+        </title>
+    </h:head>
+    <h:body>
+        <header>
+            <h:graphicImage name="images/logo.png" />
+            <div class="right">
+                Application:
+                <ui:insert name="application_name">
+                    [Application name will be inserted here]
+                </ui:insert>
+            </div>
+        </header>
+        <div id="content">
+            <ui:insert name="content">
+                [Template content will be inserted here]
+            </ui:insert>
+        </div>
+        <footer>
+            Jakarta EE Development - Red Hat Training
+        </footer>
+    </h:body>
+</html>
