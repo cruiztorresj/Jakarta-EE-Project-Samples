@@ -1,0 +1,57 @@
+/*
+ * JBoss, Home of Professional Open Source
+ * Copyright 2015, Red Hat, Inc. and/or its affiliates, and individual
+ * contributors by the @authors tag. See the copyright.txt in the
+ * distribution for a full listing of individual contributors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.redhat.training.ejb;
+
+import com.redhat.training.ui.Hello;
+
+import jakarta.inject.Inject;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.container.annotation.ArquillianTest;
+import org.jboss.shrinkwrap.api.ArchivePaths;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+@ArquillianTest
+public class EJBTest {
+
+    @Inject
+    private Hello hello;
+
+    @Deployment
+    public static WebArchive createDeployment() {
+
+        return ShrinkWrap
+            .create(WebArchive.class,"stateless-ejb-test.war")
+            .addClass(HelloBean.class)
+            .addClass(Hello.class)
+            .addAsManifestResource(EmptyAsset.INSTANCE,
+                            ArchivePaths.create("beans.xml"));
+    }
+
+    @Test
+    public void testHelloEJB() {
+
+        hello.setName("John Doe");
+        String result = hello.greet();
+        Assertions.assertEquals("Hello, John Doe", result);
+    }
+}
