@@ -1,4 +1,4 @@
-# entity-relationships
+# Jakarta EE 11 Entity Relationships web App
 
 ### This app is composed of the following architecture:
 
