@@ -28,5 +28,8 @@
 
 Check the README files inside every project for instructions specific to that project.
 
+## Undeploy the application.
+Given you just run the project as mentioned and you are done interacting with it, use `mvn wildfly:undeploy` to undeploy the application, in the tab running WildFly, you can use `Ctrl-C` to stop the process.
+
 ## Stay tuned.
 I will try to add more content in relation to the technologies being used here.
